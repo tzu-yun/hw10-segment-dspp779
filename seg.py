@@ -30,4 +30,6 @@ if __name__ == '__main__':
 
     for text in test:
         words = segment(text)
+        print(text)
         print(' '.join(words))
+        print()
