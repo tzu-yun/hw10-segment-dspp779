@@ -16,7 +16,8 @@ class LanguageModel():
         self.total = sum(word_count.values())
 
         # compute probability of each word: count/total (as dict)
-        self.word_prob = ...
+        self.word_prob = {word: count/self.total
+                          for word, count in word_count.items()}
 
     def __getitem__(self, word):
         return self.get_word_prob(word)
@@ -28,7 +29,7 @@ class LanguageModel():
         # return the probability of a word
         # if the word is not in the `self.word_prob` dictionary
         # return 10/10**len(word)/total as the default probability
-        return ...
+        return self.word_prob.get(word, 10/10**len(word)/self.total)
 
     def get_words_prob(self, tokens):
         return product(map(self.get, tokens))
