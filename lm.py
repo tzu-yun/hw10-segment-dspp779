@@ -16,8 +16,7 @@ class LanguageModel():
         self.total = sum(word_count.values())
 
         # compute probability of each word: count/total (as dict)
-        self.word_prob = {word: count/self.total
-                          for word, count in word_count.items()}
+        self.word_prob = dict(word, word_count[word]/self.total for word in word_count)
 
     def __getitem__(self, word):
         return self.get_word_prob(word)
